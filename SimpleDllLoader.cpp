@@ -5,10 +5,10 @@
 #include <Windows.h>
 #define NullCheck(var, varName) \
     if(var == NULL){ \
-        printf("[!] " varName " failed : %d\n", GetLastError()); \
+        printf("[!] " varName " is Null: %d\n", GetLastError()); \
         return false; \
     }else{ \
-        printf("[*] " varName " success : %d\n", GetLastError()); \
+        printf("[*] " varName " isn't Null : %d\n", GetLastError()); \
     } \
 
 
@@ -16,8 +16,6 @@ void printLogo() {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     //1000 is an abitrary number
     wchar_t logo[1000] = L"";
-
-
     wcscat_s(logo,L"  ██████  ██▓ ███▄ ▄███▓ ██▓███   ██▓    ▓█████  ██▓     ▒█████   ▄▄▄      ▓█████▄ ▓█████  ██▀███  \n");
     wcscat_s(logo,L"▒██    ▒ ▓██▒▓██▒▀█▀ ██▒▓██░  ██▒▓██▒    ▓█   ▀ ▓██▒    ▒██▒  ██▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒\n");
     wcscat_s(logo,L"░ ▓██▄   ▒██▒▓██    ▓██░▓██░ ██▓▒▒██░    ▒███   ▒██░    ▒██░  ██▒▒██  ▀█▄  ░██   █▌▒███   ▓██ ░▄█ ▒\n");
@@ -123,6 +121,9 @@ int main(int argc, char* argv[])
         int pid = atoi(argv[3]);
         printf("[*] PID : %d\n",pid);
         remoteInjection(dll,pid);
+    }
+    else {
+        printf("[!] Unrecognized method!\n");
     }
 
     getchar();
